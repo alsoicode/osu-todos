@@ -1,0 +1,91 @@
+.form-row {
+  margin: 2rem 0;
+}
+
+.todos {
+  padding-left: 0;
+
+  li {
+    border-bottom: solid 1px #ccc;
+    font-size: 1.5rem;
+    list-style-type: none;
+    overflow-x: hidden;
+    padding: 0.5rem 0;
+
+    &:last-child {
+      border-bottom: 0 none;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      .btn-lg {
+        &.action-done {
+          margin-left: 0;
+        }
+
+        &.action-remove {
+          margin-right: 0;
+        }
+      }
+    }
+
+    &.mark-completed {
+      .btn-lg.action-done, .btn-link {
+        color: #468C00;
+      }
+
+      .btn-lg.action-remove {
+        color: #ccc;
+        opacity: 0;
+      }
+      
+    }
+
+    &.mark-removed {
+      .btn-lg.action-remove, .btn-link {
+        color: #B20000;
+      }
+
+      .btn-lg.action-done {
+        color: #ccc;
+        opacity: 0;
+      }
+    }
+
+    .btn-lg {
+      color: #ccc;
+      display: block;
+      float: left;
+      font-size: 1.5rem;
+
+      &:last-child {
+        float: right;
+      }
+
+      &.action-done {
+        margin-left: -60px;
+
+        transition: margin-left 200ms ease-in, opacity 500ms linear;
+      }
+
+      &.action-remove {
+        margin-right: -60px;
+
+        transition: margin-right 200ms ease-in, opacity 500ms linear;
+      }
+    }
+
+    span {
+      &.btn-link {
+        color: #888;
+        padding-left: 0;
+        padding-right: 0;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
