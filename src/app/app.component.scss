@@ -1,5 +1,5 @@
 $background-color: #eee;
-$footer-height: 60px;
+$footer-height: 75px;
 
 $button-color: #FF8000;
 
@@ -68,18 +68,23 @@ header {
 
 main {
   &.container {
-    padding: $footer-height 15px 0;
+    padding: 57px 15px 0;
   }
 }
 
 footer {
   &.main {
     bottom: 0;
+    padding-top: 15px;
     position: absolute;
     width: 100%;
 
     /* Set the fixed height of the footer here */
     height: $footer-height;
     background-color: $background-color;
+
+    a {
+      color: $button-color;
+    }
   }
 }
