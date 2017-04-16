@@ -1,7 +1,18 @@
-<<<<<<< HEAD
+
 # Todos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+
+## Requirements
+
+[Node](https://nodejs.org/en/) 6 or Higher
+
+## Getting Started
+
+- Install Node and ensure it's available: `node -v`
+- Install TypeScript and Typings globally: `npm i typescript@next typings -g`
+- Install the project's depdencies via npm: `npm install`
+- Install the typings for the project: `typings install`
 
 ## Development server
 
@@ -27,6 +38,4 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
-# osu-todos
->>>>>>> dddc28db0a37d6f9cdce91b6e18056d2578234ab
+
