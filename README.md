@@ -12,7 +12,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Install Node and ensure it's available: `node -v`
 - Install TypeScript and Typings globally: `npm i typescript@next typings -g`
 - Install the project's depdencies via npm: `npm install`
-- Install the typings for the project: `typings install`
 
 ## Development server
 
