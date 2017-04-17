@@ -10,7 +10,7 @@ import { Todo } from './models/Todo';
       <span class="sr-only">Mark as Done</span>
     </button>
     <span class="btn btn-link btn-lg">
-      {{ todo.text }}
+      {{ todo.text }} {{ todo.key }}
     </span>
     <button class="btn btn-link btn-lg action-remove">
       <i class="fa fa-times-circle-o"></i>

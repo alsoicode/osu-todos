@@ -54,22 +54,14 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.todosSubscription.unsubscribe();
   }
 
-  onSubmit(event: Event): void {
-    // event.preventDefault();
-
-    // const todo = this.angularFire.database.list('/todos');
-    // const text = this.todoForm.value['text'];
-
-    // if (text) {
-    //   todo.push(<ITodo>{
-    //     createdOn: moment().toString(),
-    //     completedOn: '',
-    //     userId: this.authState['uid'],
-    //     text: text
-    //   });
-
-    //   this.todoForm.reset();
-    // }
+  onSubmit(): void {
+    const text = this.todoForm.value['text'];
+    this.todoService
+      .add(this.authState['uid'], text)
+      .then(() => {
+        this.todoForm.reset();
+      })
+      .catch(() => console.log('error'));
   }
 
 }
