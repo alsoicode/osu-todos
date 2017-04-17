@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   styleUrls: [
@@ -9,11 +13,36 @@ import { Component } from '@angular/core';
       <div class="row">
         <div class="col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
           <h1>Hi</h1>
-          <button class="btn btn-primary btn-lg btn-block">Sign In via Github <i class="fa fa-github"></i></button>
+          <login></login>
           <a class="btn btn-link" href="https://github.com/join?source=header-home" target="_blank">I don&#8217;t have a Github Account</a>
         </div>
       </div>
     </div>
   `,
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit, OnDestroy {
+
+  authSubscription: Subscription;
+  authState: Object;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
+
+
+  ngOnInit(): void {
+    this.authSubscription = this.authService.state.subscribe(authState => {
+      this.authState = authState;
+
+      if (this.authState) {
+        this.router.navigate(['/todos']);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+  }
+
+}

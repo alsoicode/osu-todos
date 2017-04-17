@@ -59,7 +59,8 @@ header {
 
       > li {
         .dropdown-menu {
-          border-top: 0;
+          border: 0 none;
+          padding: 15px;
           text-align: right;
         }
 

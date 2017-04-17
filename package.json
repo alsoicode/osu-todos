@@ -34,6 +34,7 @@
     "@angular/cli": "1.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@types/bootstrap": "^3.3.32",
+    "@types/firebase": "^2.4.31",
     "@types/jasmine": "2.5.38",
     "@types/jquery": "^2.0.41",
     "@types/node": "~6.0.60",
