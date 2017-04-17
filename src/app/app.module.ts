@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { HomeComponent } from './home';
 import { LoginComponent } from './auth/login.component';
 import { LogoutComponent } from './auth/logout.component';
+import { TodoService } from './todos/todos.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { LogoutComponent } from './auth/logout.component';
   ],
   providers: [
     AuthService,
+    TodoService,
   ],
   bootstrap: [
     AppComponent,

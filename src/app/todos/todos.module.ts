@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 
 import { MarkDoneDirective } from './todo/directives/mark-done.directive';
 import { MarkRemovalDirective } from './todo/directives/mark-remove.directive';
-import { TodosComponent } from './todos.component';
 import { TodoComponent } from './todo/todo.component';
+import { TodosComponent } from './todos.component';
 import { todosRouting } from './todos.routing';
 
 @NgModule({
