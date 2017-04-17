@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Todo } from './models/Todo';
+import { Todo } from './todo/models/Todo';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
