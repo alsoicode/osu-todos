@@ -10,7 +10,7 @@ import { Todo } from './todo/models/Todo';
 
 @Injectable()
 export class TodoService {
-
+  keyToDelete: string = null;
   todos: Todo[] = [];
   todoKeys: string[] = [];
   observable: Observable<any>;
@@ -28,24 +28,31 @@ export class TodoService {
     };
 
     this.observable = this.angularFire.database.list('/todos', query).map(objectsList => {
-      objectsList.forEach(object => {
-        const objectData = <ITodo>object;
 
-        const todo = new Todo();
-        todo.createdOn = objectData.createdOn;
-        todo.completedOn = objectData.completedOn;
-        todo.key = objectData.$key;
-        todo.userId = objectData.userId;
-        todo.text = objectData.text;
+      if (this.keyToDelete) {
+        this.todos = this.todos.filter(todo => todo.key !== this.keyToDelete);
+        this.keyToDelete = null;
+      }
+      else {
+        objectsList.forEach(object => {
+          const objectData = <ITodo>object;
+          const todo = new Todo();
 
-        if (!this.todoKeys.includes(todo.key)) {
-          this.todoKeys.push(todo.key);
-          this.todos.push(todo);
-        };
-      });
+          todo.createdOn = objectData.createdOn;
+          todo.completedOn = objectData.completedOn;
+          todo.key = objectData.$key;
+          todo.userId = objectData.userId;
+          todo.text = objectData.text;
+
+          if (!this.todoKeys.includes(todo.key)) {
+            this.todoKeys.push(todo.key);
+            this.todos.push(todo);
+          }
+        });
+      }
 
       return this.todos.sort((a, b) => {
-        return new Date(b.createdOn).getTime() - new Date(a.createdOn).getTime();
+        return b.createdOn - a.createdOn;
       });
     });
 
@@ -56,12 +63,21 @@ export class TodoService {
     return Promise.resolve(
       this.angularFire.database.list('/todos')
         .push({
-          createdOn: moment().toString(),
+          createdOn: new Date().getTime(),
           completedOn: '',
           userId: userId,
           text: text
         })
         .then(todo => todo)
+    );
+  }
+
+  remove(key: string): Promise<any> {
+    this.keyToDelete = key;
+
+    return Promise.resolve(
+      this.angularFire.database.list('/todos')
+        .remove(key)
     );
   }
 

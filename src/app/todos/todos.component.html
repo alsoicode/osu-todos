@@ -1,18 +1,15 @@
-<div class="row form-row">
-  <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <form [formGroup]="todoForm" (keyup.enter)="onSubmit()" class="text-center" method="post" enctype="application/x-www-form-urlencoded" novalidate>
-      <fieldset class="form-group">
-        <legend>What needs to be done?</legend>
-        <input formControlName="text" type="text" class="form-control input-lg" (blur)="onSubmit()">
-      </fieldset>
-    </form>
+<section *ngIf="!loading; else showLoading">
+  <div class="row form-row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+      <todo-form [userId]="authState.uid"></todo-form>
+    </div>
   </div>
-</div>
-<section class="row">
-  <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <ol class="todos" *ngIf="!loading; else showLoading">
-      <li todo-component *ngFor="let todo of todos" [todo]="todo"></li>
-    </ol>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+      <ol class="todos">
+        <li todo-component *ngFor="let todo of todos" [todo]="todo"></li>
+      </ol>
+    </div>
   </div>
 
   <ng-template #showLoading>
