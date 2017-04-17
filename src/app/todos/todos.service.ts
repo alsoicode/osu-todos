@@ -10,7 +10,7 @@ import { Todo } from './todo/models/Todo';
 
 @Injectable()
 export class TodoService {
-  keyToDelete: string = null;
+  keyToExclude: string = null;
   todos: Todo[] = [];
   todoKeys: string[] = [];
   observable: Observable<any>;
@@ -29,24 +29,27 @@ export class TodoService {
 
     this.observable = this.angularFire.database.list('/todos', query).map(objectsList => {
 
-      if (this.keyToDelete) {
-        this.todos = this.todos.filter(todo => todo.key !== this.keyToDelete);
-        this.keyToDelete = null;
+      if (this.keyToExclude) {
+        this.todos = this.todos.filter(todo => todo.key !== this.keyToExclude);
+        this.keyToExclude = null;
       }
       else {
         objectsList.forEach(object => {
           const objectData = <ITodo>object;
-          const todo = new Todo();
 
-          todo.createdOn = objectData.createdOn;
-          todo.completedOn = objectData.completedOn;
-          todo.key = objectData.$key;
-          todo.userId = objectData.userId;
-          todo.text = objectData.text;
+          if (!objectData.completedOn) {
+            const todo = new Todo();
 
-          if (!this.todoKeys.includes(todo.key)) {
-            this.todoKeys.push(todo.key);
-            this.todos.push(todo);
+            todo.createdOn = objectData.createdOn;
+            todo.completedOn = objectData.completedOn;
+            todo.key = objectData.$key;
+            todo.userId = objectData.userId;
+            todo.text = objectData.text;
+
+            if (!this.todoKeys.includes(todo.key)) {
+              this.todoKeys.push(todo.key);
+              this.todos.push(todo);
+            }
           }
         });
       }
@@ -72,8 +75,19 @@ export class TodoService {
     );
   }
 
+  complete(key: string): Promise<any> {
+    this.keyToExclude = key;
+
+    return Promise.resolve(
+      this.angularFire.database.list('/todos')
+      .update(key, {
+        completedOn: new Date().getTime()
+      })
+    );
+  }
+
   remove(key: string): Promise<any> {
-    this.keyToDelete = key;
+    this.keyToExclude = key;
 
     return Promise.resolve(
       this.angularFire.database.list('/todos')
