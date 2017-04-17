@@ -10,72 +10,8 @@
 </div>
 <section class="row">
   <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <ol class="todos">
-      <li>
-        <button class="btn btn-link btn-lg action-done">
-          <i class="fa fa-check-circle-o"></i>
-          <span class="sr-only">Mark as Done</span>
-        </button>
-        <span class="btn btn-link btn-lg">
-          First Item
-        </span>
-        <button class="btn btn-link btn-lg action-remove">
-          <i class="fa fa-times-circle-o"></i>
-          <span class="sr-only">Remove</span>
-        </button>
-      </li>
-      <li>
-        <button class="btn btn-link btn-lg action-done">
-          <i class="fa fa-check-circle-o"></i>
-          <span class="sr-only">Mark as Done</span>
-        </button>
-        <span class="btn btn-link btn-lg">
-          Second Item
-        </span>
-        <button class="btn btn-link btn-lg action-remove">
-          <i class="fa fa-times-circle-o"></i>
-          <span class="sr-only">Remove</span>
-        </button>
-      </li>
-      <li>
-        <button class="btn btn-link btn-lg action-done">
-          <i class="fa fa-check-circle-o"></i>
-          <span class="sr-only">Mark as Done</span>
-        </button>
-        <span class="btn btn-link btn-lg">
-          Third Item
-        </span>
-        <button class="btn btn-link btn-lg action-remove">
-          <i class="fa fa-times-circle-o"></i>
-          <span class="sr-only">Remove</span>
-        </button>
-      </li>
-      <li>
-        <button class="btn btn-link btn-lg action-done">
-          <i class="fa fa-check-circle-o"></i>
-          <span class="sr-only">Mark as Done</span>
-        </button>
-        <span class="btn btn-link btn-lg">
-          Fourth Item
-        </span>
-        <button class="btn btn-link btn-lg action-remove">
-          <i class="fa fa-times-circle-o"></i>
-          <span class="sr-only">Remove</span>
-        </button>
-      </li>
-      <li>
-        <button class="btn btn-link btn-lg action-done">
-          <i class="fa fa-check-circle-o"></i>
-          <span class="sr-only">Mark as Done</span>
-        </button>
-        <span class="btn btn-link btn-lg">
-          Fifth Item
-        </span>
-        <button class="btn btn-link btn-lg action-remove">
-          <i class="fa fa-times-circle-o"></i>
-          <span class="sr-only">Remove</span>
-        </button>
-      </li>
+    <ol class="todos" *ngIf="todos">
+      <li todo-component *ngFor="let todo of todos" [todo]="todo"></li>
     </ol>
   </div>
 </section>
