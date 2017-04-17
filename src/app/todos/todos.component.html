@@ -1,17 +1,21 @@
 <div class="row form-row">
   <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <form class="text-center" method="post" enctype="application/x-www-form-urlencoded" novalidate>
+    <form [formGroup]="todoForm" class="text-center" method="post" enctype="application/x-www-form-urlencoded" novalidate>
       <fieldset class="form-group">
         <legend>What needs to be done?</legend>
-        <input type="text" class="form-control input-lg">
+        <input formControlName="text" type="text" class="form-control input-lg" (blur)="onSubmit($event)">
       </fieldset>
     </form>
   </div>
 </div>
 <section class="row">
   <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
-    <ol class="todos" *ngIf="todos">
+    <ol class="todos" *ngIf="!loading; else showLoading">
       <li todo-component *ngFor="let todo of todos" [todo]="todo"></li>
     </ol>
   </div>
+
+  <ng-template #showLoading>
+    <h2 class="text-muted loading-indicator"><i class="fa fa-spinner fa-pulse fa-fw"></i> Loading Todos&hellip;</h2>
+  </ng-template>
 </section>

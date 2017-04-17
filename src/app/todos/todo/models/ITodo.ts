@@ -1,6 +1,6 @@
 export interface ITodo {
-  completedOn: Date;
-  createdOn: Date;
+  completedOn?: String;
+  createdOn: String;
   text: string;
   userId: string;
 }
