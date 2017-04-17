@@ -30,7 +30,7 @@
       }
     }
 
-    &.mark-completed {
+    &.mark-for-completion {
       .btn-lg.action-done, .btn-link {
         color: #468C00;
       }
@@ -42,7 +42,7 @@
       
     }
 
-    &.mark-removed {
+    &.mark-for-removal {
       .btn-lg.action-remove, .btn-link {
         color: #B20000;
       }
