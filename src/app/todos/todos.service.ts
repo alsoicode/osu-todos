@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
+import * as moment from 'moment';
 
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { ITodo } from './todo/models/ITodo';
 import { Todo } from './todo/models/Todo';
 
@@ -12,6 +12,7 @@ import { Todo } from './todo/models/Todo';
 export class TodoService {
 
   todos: Todo[] = [];
+  todoKeys: string[] = [];
   observable: Observable<any>;
 
   constructor (
@@ -30,20 +31,38 @@ export class TodoService {
       objectsList.forEach(object => {
         const objectData = <ITodo>object;
 
-        let todo = new Todo();
+        const todo = new Todo();
         todo.createdOn = objectData.createdOn;
         todo.completedOn = objectData.completedOn;
         todo.key = objectData.$key;
         todo.userId = objectData.userId;
         todo.text = objectData.text;
 
-        this.todos.push(todo);
+        if (!this.todoKeys.includes(todo.key)) {
+          this.todoKeys.push(todo.key);
+          this.todos.push(todo);
+        };
       });
 
-      return this.todos.reverse();
+      return this.todos.sort((a, b) => {
+        return new Date(b.createdOn).getTime() - new Date(a.createdOn).getTime();
+      });
     });
 
     return this.observable;
+  }
+
+  add(userId: string, text: string): Promise<any> {
+    return Promise.resolve(
+      this.angularFire.database.list('/todos')
+        .push({
+          createdOn: moment().toString(),
+          completedOn: '',
+          userId: userId,
+          text: text
+        })
+        .then(todo => todo)
+    );
   }
 
 }
