@@ -18,6 +18,7 @@ export class TodosComponent implements OnInit, OnDestroy {
   authState: Object;
   authSubscription: Subscription;
   loading: Boolean = true;
+  showLoading: Boolean;
   todos: Todo[] = [];
   todosSubscription: Subscription;
 
