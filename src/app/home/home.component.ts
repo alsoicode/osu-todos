@@ -1,8 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { AuthService } from '../auth/auth.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Component } from '@angular/core';
 
 @Component({
   styleUrls: [
@@ -20,29 +16,4 @@ import { Subscription } from 'rxjs/Subscription';
     </div>
   `,
 })
-export class HomeComponent implements OnInit, OnDestroy {
-
-  authSubscription: Subscription;
-  authState: Object;
-
-  constructor(
-    private authService: AuthService,
-  ) {}
-
-
-  ngOnInit(): void {
-    // this.authSubscription = this.authService.state.subscribe(authState => {
-    //   this.authState = authState;
-    //   console.log('component this.authState', this.authState);
-
-    //   if (this.authState) {
-    //     this.router.navigate(['/todos']);
-    //   }
-    // });
-  }
-
-  ngOnDestroy(): void {
-    // this.authSubscription.unsubscribe();
-  }
-
-}
+export class HomeComponent {}

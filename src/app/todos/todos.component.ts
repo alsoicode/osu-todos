@@ -13,8 +13,8 @@ import { TodoService } from './todos.service';
 })
 export class TodosComponent implements OnInit, OnDestroy {
 
-  loading: Boolean = true;
-  showLoading: Boolean;
+  loading = true;
+  showLoading: any;
   todos: Todo[] = [];
   todosSubscription: Subscription;
 

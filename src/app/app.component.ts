@@ -13,8 +13,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  authState: Object;
   authSubscription: Subscription;
+  loggedIn = false;
 
   constructor (
     private authService: AuthService,
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authSubscription = this.authService.state.subscribe(authState => {
-      this.authState = authState;
+      this.loggedIn = authState && this.authService.loggedIn;
     });
   }
 
