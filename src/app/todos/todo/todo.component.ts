@@ -6,12 +6,12 @@ import { TodoService } from '../todos.service';
 @Component({
   selector: '[todo-component]',
   template: `
-    <button class="btn btn-link btn-lg action-done" (click)="onComplete(todo.key)">
+    <button class="btn btn-link btn-lg action-done" (click)="onComplete(todo)">
       <i class="fa fa-check-circle-o"></i>
       <span class="sr-only">Mark as Done</span>
     </button>
     <span class="btn btn-link btn-lg">
-      {{ todo.text }} {{ todo.key }}
+      {{ todo.text }}
     </span>
     <button class="btn btn-link btn-lg action-remove" (click)="onRemove(todo.key)">
       <i class="fa fa-times-circle-o"></i>
@@ -28,8 +28,8 @@ export class TodoComponent {
     private todoService: TodoService,
   ) {}
 
-  onComplete(key: string): void {
-    this.todoService.complete(key);
+  onComplete(todo: Todo): void {
+    this.todoService.complete(todo);
   }
 
   onRemove(key: string): void {

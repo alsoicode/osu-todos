@@ -18,9 +18,6 @@ export class TodoFormComponent implements AfterContentInit, OnInit {
 
   todoForm: FormGroup;
 
-  @Input()
-  userId: string;
-
   @ViewChild('textInput')
   textInput: ElementRef;
 
@@ -49,7 +46,7 @@ export class TodoFormComponent implements AfterContentInit, OnInit {
 
     if (text) {
       this.todoService
-        .add(this.userId, text)
+        .add(text)
         .then(() => {
           this.todoForm.reset();
           this.focusTextInput();

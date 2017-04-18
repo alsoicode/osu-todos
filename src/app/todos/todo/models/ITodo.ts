@@ -1,7 +1,5 @@
 export interface ITodo {
-  $key?: string;
-  completedOn?: number;
+  key: string;
   createdOn: number;
   text: string;
-  userId: string;
 }
