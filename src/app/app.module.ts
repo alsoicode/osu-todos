@@ -5,19 +5,18 @@ import { RouterModule } from '@angular/router';
 import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routing';
-import { AuthService } from './auth/auth.service';
+import { AnonymousRequired, AuthRequired, AuthService, LoginButtonComponent } from './auth';
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home';
-import { LoginComponent } from './auth/login.component';
-import { LogoutComponent } from './auth/logout.component';
+import { LogoutComponent } from './logout.component';
 import { TodoService } from './todos/todos.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
     LogoutComponent,
+    LoginButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +29,8 @@ import { TodoService } from './todos/todos.service';
     )
   ],
   providers: [
+    AnonymousRequired,
+    AuthRequired,
     AuthService,
     TodoService,
   ],

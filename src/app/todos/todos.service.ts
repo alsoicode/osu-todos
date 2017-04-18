@@ -22,9 +22,11 @@ export class TodoService {
     private angularFire: AngularFire,
     private authService: AuthService,
   ) {
-    const rootPath = `/todos/${this.authService.getUserId()}/`;
-    this.incompleteTodos = this.angularFire.database.list(`${rootPath}/incomplete`);
-    this.completeTodos = this.angularFire.database.list(`${rootPath}/complete`);
+    if (this.authService.state) {
+      const rootPath = `/todos/${this.authService.userId}/`;
+      this.incompleteTodos = this.angularFire.database.list(`${rootPath}/incomplete`);
+      this.completeTodos = this.angularFire.database.list(`${rootPath}/complete`);
+    }
   }
 
   getIncomplete(): Observable<Todo[]> {
