@@ -1,5 +1,6 @@
 .form-row {
-  margin: 2rem 0;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .loading-indicator {
@@ -11,7 +12,7 @@
 
   li {
     border-bottom: solid 1px #ccc;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     list-style-type: none;
     overflow-x: hidden;
     padding: 0.5rem 0;
@@ -43,7 +44,7 @@
         color: #ccc;
         opacity: 0;
       }
-      
+
     }
 
     &.mark-for-removal {
@@ -83,8 +84,12 @@
     span {
       &.btn-link {
         color: #888;
+        line-height: 1.5rem;
         padding-left: 0;
         padding-right: 0;
+        text-align: left;
+        width: 80%;
+        white-space: inherit;
 
         &:hover {
           text-decoration: none;
