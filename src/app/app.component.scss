@@ -1,10 +1,10 @@
 @import '../assets/scss/mixins';
 
 $background-color: #eee;
+$button-color: #FF8000;
 $footer-color: #bbb;
 $footer-height: 75px;
-
-$button-color: #FF8000;
+$largest-mobile-breakpoint: 414px;
 
 
 
@@ -31,6 +31,7 @@ body {
 header {
   .navbar {
     box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
+    height: 57px;
     min-height: 57px;
   }
 
@@ -46,6 +47,10 @@ header {
 
       &:hover {
         color: $button-color;
+      }
+
+      @media screen and (max-width: $largest-mobile-breakpoint) {
+        font-size: 1.75rem;
       }
 
       i {
@@ -69,6 +74,68 @@ header {
 
           &:hover {
             color: $button-color;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $largest-mobile-breakpoint) {
+      .navbar-header {
+        float: left;
+      }
+
+      #navbar {
+        float: right;
+        max-width: 40%;
+
+        .navbar-nav {
+          height: 57px;
+          margin: 0 -15px 0;
+        }
+
+        .dropdown {
+          height: 57px;
+
+          &.open {
+            a, a:hover {
+              color: #333;
+            }
+
+            .dropdown-menu {
+              a {
+                background-color: #fff;
+                box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.5);
+                height: 50px;
+                margin-right: -16px;
+                padding-bottom: 0;
+                padding-right: 20px;
+                width: auto;
+              }
+            }
+          }
+
+          a {
+            display: block;
+            float: right;
+            height: 57px;
+            padding-top: 15px;
+            width: 75px;
+
+            &:hover {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 320px) {
+      #navbar {
+        .dropdown {
+          &.open {
+            .dropdown-menu {
+              padding-right: 30px;
+            }
           }
         }
       }
