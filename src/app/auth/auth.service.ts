@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AngularFire, AuthProviders, FirebaseAuthState } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/take';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +15,12 @@ export class AuthService {
     private router: Router,
   ) {
     this.state = this.angularFire.auth;
+  }
+
+  getUserId(): string {
+    let userId: string;
+    this.state.take(1).subscribe(state => userId = state.uid);
+    return userId;
   }
 
   login(): void {

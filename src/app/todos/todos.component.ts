@@ -31,10 +31,8 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.state.subscribe(authState => {
       this.authState = authState;
 
-      const userId: string = this.authState['uid'];
-
       if (this.authState) {
-        this.todosSubscription = this.todoService.getByUserId(userId).subscribe(todos => {
+        this.todosSubscription = this.todoService.getIncomplete().subscribe(todos => {
           this.todos = todos;
           this.loading = false;
         });

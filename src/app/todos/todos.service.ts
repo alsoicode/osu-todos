@@ -4,12 +4,15 @@ import 'rxjs/add/operator/map';
 import * as moment from 'moment';
 
 import { AngularFire } from 'angularfire2';
-import { ITodo } from './todo/models/ITodo';
+import { AuthService } from '../auth/auth.service';
+import { IObjectData } from './todo/models/IObjectData';
 import { Todo } from './todo/models/Todo';
 
 
 @Injectable()
 export class TodoService {
+  completeTodos: any;
+  incompleteTodos: any;
   keyToExclude: string = null;
   todos: Todo[] = [];
   todoKeys: string[] = [];
@@ -17,17 +20,15 @@ export class TodoService {
 
   constructor (
     private angularFire: AngularFire,
-  ) {}
+    private authService: AuthService,
+  ) {
+    const rootPath = `/todos/${this.authService.getUserId()}/`;
+    this.incompleteTodos = this.angularFire.database.list(`${rootPath}/incomplete`);
+    this.completeTodos = this.angularFire.database.list(`${rootPath}/complete`);
+  }
 
-  getByUserId(userId: string): Observable<Todo[]> {
-    const query = {
-      query: {
-        orderByChild: 'userId',
-        equalTo: userId
-      }
-    };
-
-    this.observable = this.angularFire.database.list('/todos', query).map(objectsList => {
+  getIncomplete(): Observable<Todo[]> {
+    this.observable = this.incompleteTodos.map(objectsList => {
 
       if (this.keyToExclude) {
         this.todos = this.todos.filter(todo => todo.key !== this.keyToExclude);
@@ -35,21 +36,16 @@ export class TodoService {
       }
       else {
         objectsList.forEach(object => {
-          const objectData = <ITodo>object;
+          const objectData = <IObjectData>object;
 
-          if (!objectData.completedOn) {
-            const todo = new Todo();
+          const todo = new Todo();
+          todo.createdOn = objectData.createdOn;
+          todo.key = objectData.$key;
+          todo.text = objectData.text;
 
-            todo.createdOn = objectData.createdOn;
-            todo.completedOn = objectData.completedOn;
-            todo.key = objectData.$key;
-            todo.userId = objectData.userId;
-            todo.text = objectData.text;
-
-            if (!this.todoKeys.includes(todo.key)) {
-              this.todoKeys.push(todo.key);
-              this.todos.push(todo);
-            }
+          if (!this.todoKeys.includes(todo.key)) {
+            this.todoKeys.push(todo.key);
+            this.todos.push(todo);
           }
         });
       }
@@ -62,26 +58,26 @@ export class TodoService {
     return this.observable;
   }
 
-  add(userId: string, text: string): Promise<any> {
+  add(text: string): Promise<any> {
     return Promise.resolve(
-      this.angularFire.database.list('/todos')
+      this.incompleteTodos
         .push({
           createdOn: new Date().getTime(),
-          completedOn: '',
-          userId: userId,
           text: text
         })
         .then(todo => todo)
     );
   }
 
-  complete(key: string): Promise<any> {
-    this.keyToExclude = key;
-
+  complete(todo: Todo): Promise<any> {
     return Promise.resolve(
-      this.angularFire.database.list('/todos')
-      .update(key, {
-        completedOn: new Date().getTime()
+      this.completeTodos.push({
+        createdOn: todo.createdOn,
+        completedOn: new Date().getTime(),
+        text: todo.text
+      })
+      .then(() => {
+        this.remove(todo.key);
       })
     );
   }
@@ -90,8 +86,7 @@ export class TodoService {
     this.keyToExclude = key;
 
     return Promise.resolve(
-      this.angularFire.database.list('/todos')
-        .remove(key)
+      this.incompleteTodos.remove(key)
     );
   }
 
