@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
       <div class="row">
         <div class="col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
           <h1>Hi</h1>
-          <login></login>
+          <login-button></login-button>
           <a class="btn btn-link" href="https://github.com/join?source=header-home" target="_blank">I don&#8217;t have a Github Account</a>
         </div>
       </div>
@@ -27,22 +27,22 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
   ) {}
 
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.state.subscribe(authState => {
-      this.authState = authState;
+    // this.authSubscription = this.authService.state.subscribe(authState => {
+    //   this.authState = authState;
+    //   console.log('component this.authState', this.authState);
 
-      if (this.authState) {
-        this.router.navigate(['/todos']);
-      }
-    });
+    //   if (this.authState) {
+    //     this.router.navigate(['/todos']);
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+    // this.authSubscription.unsubscribe();
   }
 
 }

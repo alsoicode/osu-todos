@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { AngularFire, AuthProviders, FirebaseAuthState } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
@@ -12,25 +11,32 @@ export class AuthService {
 
   constructor(
     private angularFire: AngularFire,
-    private router: Router,
   ) {
     this.state = this.angularFire.auth;
   }
 
-  getUserId(): string {
-    let userId: string;
-    this.state.take(1).subscribe(state => userId = state.uid);
+  get loggedIn(): boolean {
+    let authenticated = false;
+    this.state.take(1).subscribe(state => authenticated = state && state.hasOwnProperty('uid'));
+    return authenticated;
+  }
+
+  get userId(): string {
+    let userId: string = null;
+    if (this.loggedIn) {
+      this.state.take(1).subscribe(state => userId = state.uid);
+    }
     return userId;
   }
 
   login(): void {
-    this.angularFire.auth.login({
-      provider: AuthProviders.Github
-    });
+    this.angularFire.auth
+      .login({
+        provider: AuthProviders.Github
+      });
   }
 
-  logout(): void {
-    this.angularFire.auth.logout();
-    this.router.navigate(['/']);
+  logout(): Promise<any> {
+    return this.angularFire.auth.logout();
   }
 }

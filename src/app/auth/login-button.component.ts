@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Component({
-  selector: 'login',
+  selector: 'login-button',
   template: `
     <button class="btn btn-primary btn-lg btn-block" (click)="onLogin()">Sign In via Github <i class="fa fa-github"></i></button>
   `
 })
-export class LoginComponent {
+export class LoginButtonComponent {
 
   constructor (
     private authService: AuthService,
