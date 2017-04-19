@@ -7,6 +7,15 @@ $footer-height: 75px;
 $largest-mobile-breakpoint: 414px;
 
 
+/* Bootstrap Overrides
+-------------------------------------------------- */
+.btn {
+  &.btn-block {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
 
 /* Sticky footer styles
 -------------------------------------------------- */
