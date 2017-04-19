@@ -1,10 +1,5 @@
 @import '../assets/scss/mixins';
-
-$background-color: #eee;
-$button-color: #FF8000;
-$footer-color: #bbb;
-$footer-height: 75px;
-$largest-mobile-breakpoint: 414px;
+@import '../assets/scss/variables';
 
 
 /* Bootstrap Overrides
@@ -31,6 +26,10 @@ body {
 
   /* Margin bottom by footer height */
   margin-bottom: $footer-height;
+
+  @media screen and (max-width: $largest-mobile-breakpoint) {
+    margin-bottom: $footer-height + 15px;
+  }
 
   a {
     color: $button-color;
@@ -171,8 +170,17 @@ footer {
     height: $footer-height;
     background-color: $footer-color;
 
+    @media screen and (max-width: $largest-mobile-breakpoint) {
+      height: $footer-height + 15px;
+    }
+
     a {
       color: inherit;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 }
