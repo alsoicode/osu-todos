@@ -1,6 +1,12 @@
+@import '../../assets/scss/variables';
+
 .form-row {
   margin-bottom: 2rem;
   margin-top: 2rem;
+
+  @media screen and (max-width: $largest-mobile-breakpoint) {
+    margin-bottom: 0;
+  }
 }
 
 .loading-indicator {
