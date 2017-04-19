@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   template: `
     <div class="container text-center">
       <div class="row">
-        <div class="col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+        <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
           <h1>Hi</h1>
           <login-button></login-button>
           <a class="btn btn-link" href="https://github.com/join" target="_blank">I don&#8217;t have a Github Account</a>
