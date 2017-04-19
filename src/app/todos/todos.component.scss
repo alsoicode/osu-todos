@@ -13,6 +13,30 @@
   font-weight: 300;
 }
 
+.gu-mirror {
+  list-style-type: none;
+  opacity: 1;
+
+  .btn[class*='action-'] {
+    display: none;
+  }
+
+  span {
+    &.btn-link {
+      background-color: #eee;
+      border-radius: 0;
+      color: #888;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      padding: 18px 0;
+      text-align: left;
+      text-decoration: none;
+      width: 80%;
+      white-space: inherit;
+    }
+  }
+}
+
 .todos {
   padding-left: 0;
 
@@ -64,6 +88,69 @@
       }
     }
 
+    &.gu-transit {
+      opacity: 1;
+
+      &.action-done {
+        .btn-lg {
+          &.action-done, .action-remove {
+            transition: all 0s ease 0s;
+          }
+
+          &.action-done {
+            background-color: #468C00;
+            border-radius: 5px 0 0 5px;
+            display: block;
+            padding-top: 7px;
+            text-align: left;
+            z-index: 110;
+            width: 80%;
+          }
+
+          &.action-remove {
+            display: none;
+          }
+
+          &.todo {
+            display: none;
+          }
+        }
+      }
+
+      &.action-remove {
+        .btn-lg.action-remove {
+          display: none;
+        }
+
+        .btn-lg.action-remove {
+          display: table;
+          z-index: 110;
+        }
+      }
+
+      .btn-lg.action {
+        color: #fff;
+        display: none;
+        height: 100%;
+        float: none;
+        margin: 0;
+        z-index: 100;
+      }
+
+    }
+
+    &.desktop {
+      .btn-lg {
+        &.action-done {
+          transition: margin-left 200ms ease-in, opacity 500ms linear;
+        }
+
+        &.action-remove {
+          transition: margin-right 200ms ease-in, opacity 500ms linear;
+        }
+      }
+    }
+
     .btn-lg {
       color: #ccc;
       display: block;
@@ -77,13 +164,13 @@
       &.action-done {
         margin-left: -60px;
 
-        transition: margin-left 200ms ease-in, opacity 500ms linear;
+      //   transition: margin-left 200ms ease-in, opacity 500ms linear;
       }
 
       &.action-remove {
         margin-right: -60px;
 
-        transition: margin-right 200ms ease-in, opacity 500ms linear;
+      //   transition: margin-right 200ms ease-in, opacity 500ms linear;
       }
     }
 

@@ -6,14 +6,14 @@ import { TodoService } from '../todos.service';
 @Component({
   selector: '[todo-component]',
   template: `
-    <button class="btn btn-link btn-lg action-done" (click)="onComplete(todo)">
+    <button class="btn btn-link btn-lg action action-done" (click)="onComplete(todo)">
       <i class="fa fa-check-circle-o"></i>
       <span class="sr-only">Mark as Done</span>
     </button>
-    <span class="btn btn-link btn-lg">
+    <span class="btn btn-link btn-lg todo">
       {{ todo.text }}
     </span>
-    <button class="btn btn-link btn-lg action-remove" (click)="onRemove(todo.key)">
+    <button class="btn btn-link btn-lg action action-remove" (click)="onRemove(todo.key)">
       <i class="fa fa-times-circle-o"></i>
       <span class="sr-only">Remove</span>
     </button>
