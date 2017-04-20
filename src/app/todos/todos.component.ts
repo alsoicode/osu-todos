@@ -48,8 +48,12 @@ export class TodosComponent implements OnInit, OnDestroy {
     });
 
     this.dragulaService.cancel.subscribe(value => {
-      $(value[1]).removeClass('action-done action-remove').find('.action').height(0);
+      $(value[1]).removeClass('action-done action-remove').find('.action').removeAttr('style');
     });
+
+    this.dragulaService.dragend.subscribe(value => {
+      console.log(value);
+    })
   }
 
   ngOnDestroy(): void {

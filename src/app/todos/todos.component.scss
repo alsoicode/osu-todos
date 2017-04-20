@@ -28,7 +28,7 @@
       color: #888;
       font-size: 1.5rem;
       line-height: 1.5rem;
-      padding: 18px 0;
+      padding: 18px;
       text-align: left;
       text-decoration: none;
       width: 80%;
@@ -37,155 +37,177 @@
   }
 }
 
-.todos {
-  padding-left: 0;
-
-  li {
-    border-bottom: solid 1px #ccc;
-    font-size: 1.75rem;
-    list-style-type: none;
-    overflow-x: hidden;
-    padding: 0.5rem 0;
-
-    &:last-child {
-      border-bottom: 0 none;
-    }
-
-    &:hover {
-      cursor: pointer;
-
-      .btn-lg {
-        &.action-done {
-          margin-left: 0;
-        }
-
-        &.action-remove {
-          margin-right: 0;
-        }
-      }
-    }
-
-    &.mark-for-completion {
-      .btn-lg.action-done, .btn-link {
-        color: #468C00;
-      }
-
-      .btn-lg.action-remove {
-        color: #ccc;
-        opacity: 0;
-      }
-
-    }
-
-    &.mark-for-removal {
-      .btn-lg.action-remove, .btn-link {
-        color: #B20000;
-      }
-
-      .btn-lg.action-done {
-        color: #ccc;
-        opacity: 0;
-      }
-    }
-
-    &.gu-transit {
-      opacity: 1;
-
-      &.action-done {
-        .btn-lg {
-          &.action-done, .action-remove {
-            transition: all 0s ease 0s;
+body {
+  &.no-touch {
+    .todos {
+      li {
+        &.mark-for-completion {
+          .btn-lg.action-done, .btn-link {
+            color: #468C00;
           }
 
+          .btn-lg.action-remove {
+            color: #ccc;
+            opacity: 0;
+          }
+
+        }
+
+        &.mark-for-removal {
+          .btn-lg.action-remove, .btn-link {
+            color: #B20000;
+          }
+
+          .btn-lg.action-done {
+            color: #ccc;
+            opacity: 0;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .btn-lg {
+            &.action-done {
+              margin-left: 0;
+            }
+
+            &.action-remove {
+              margin-right: 0;
+            }
+          }
+        }
+
+        .btn-lg {
           &.action-done {
-            background-color: #468C00;
-            border-radius: 5px 0 0 5px;
-            display: block;
-            padding-top: 7px;
-            text-align: left;
-            z-index: 110;
-            width: 80%;
+            transition: margin-left 200ms ease-in, opacity 500ms linear;
           }
 
           &.action-remove {
-            display: none;
-          }
-
-          &.todo {
-            display: none;
+            transition: margin-right 200ms ease-in, opacity 500ms linear;
           }
         }
       }
-
-      &.action-remove {
-        .btn-lg.action-remove {
-          display: none;
-        }
-
-        .btn-lg.action-remove {
-          display: table;
-          z-index: 110;
-        }
-      }
-
-      .btn-lg.action {
-        color: #fff;
-        display: none;
-        height: 100%;
-        float: none;
-        margin: 0;
-        z-index: 100;
-      }
-
     }
+  }
 
-    &.desktop {
-      .btn-lg {
+  &.touch-enabled {
+    
+  }
+
+
+  .todos {
+    padding-left: 0;
+
+    li {
+      border-bottom: solid 1px #ccc;
+      font-size: 1.75rem;
+      list-style-type: none;
+      overflow-x: hidden;
+      padding: 0.5rem 0;
+
+      &:last-child {
+        border-bottom: 0 none;
+      }
+
+      &.gu-transit {
+        opacity: 1;
+
         &.action-done {
-          transition: margin-left 200ms ease-in, opacity 500ms linear;
+          .btn-lg {
+            &.action-done, .action-remove {
+              transition: all 0s ease 0s;
+            }
+
+            &.action-done {
+              background-color: #468C00;
+              border-radius: 5px 0 0 5px;
+              display: block;
+              padding-top: 7px;
+              text-align: left;
+              z-index: 110;
+              width: 80%;
+            }
+
+            &.action-remove {
+              display: none;
+            }
+
+            &.todo {
+              display: none;
+            }
+          }
         }
 
         &.action-remove {
-          transition: margin-right 200ms ease-in, opacity 500ms linear;
+          .btn-lg.action-remove {
+            display: none;
+          }
+
+          .btn-lg.action-remove {
+            display: table;
+            z-index: 110;
+          }
+        }
+
+        .btn-lg.action {
+          color: #fff;
+          display: none;
+          float: none;
+          margin: 0;
+          z-index: 100;
+        }
+
+      }
+
+      // &.touch {
+      //   .btn-lg {
+      //     &.action {
+      //       height: 0;
+      //     }
+      //   }
+      // }
+
+      .btn-lg {
+        color: #ccc;
+        display: block;
+        float: left;
+        font-size: 1.5rem;
+
+        &:last-child {
+          float: right;
+        }
+
+        &.action-done {
+          margin-left: -60px;
+
+        //   transition: margin-left 200ms ease-in, opacity 500ms linear;
+        }
+
+        &.action-remove {
+          margin-right: -60px;
+
+        //   transition: margin-right 200ms ease-in, opacity 500ms linear;
+        }
+
+        &.action {
+          height: 0;
         }
       }
-    }
 
-    .btn-lg {
-      color: #ccc;
-      display: block;
-      float: left;
-      font-size: 1.5rem;
+      span {
+        &.btn-link {
+          color: #888;
+          line-height: 1.5rem;
+          padding-left: 0;
+          padding-right: 0;
+          text-align: left;
+          width: 80%;
+          white-space: inherit;
 
-      &:last-child {
-        float: right;
-      }
-
-      &.action-done {
-        margin-left: -60px;
-
-      //   transition: margin-left 200ms ease-in, opacity 500ms linear;
-      }
-
-      &.action-remove {
-        margin-right: -60px;
-
-      //   transition: margin-right 200ms ease-in, opacity 500ms linear;
-      }
-    }
-
-    span {
-      &.btn-link {
-        color: #888;
-        line-height: 1.5rem;
-        padding-left: 0;
-        padding-right: 0;
-        text-align: left;
-        width: 80%;
-        white-space: inherit;
-
-        &:hover {
-          text-decoration: none;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
     }
