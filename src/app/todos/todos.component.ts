@@ -31,29 +31,38 @@ export class TodosComponent implements OnInit, OnDestroy {
     });
 
     this.dragulaService.setOptions('todos-bag', {
-      axis: 'x'
+      axis: 'x',
+      removeOnSpill: true
     });
 
-    this.dragulaService.drag.subscribe(value => {
-      const draggedItem = $(value[1]);
-      const height = draggedItem.find('.todo').height();
+    this.dragulaService.drag.subscribe(values => {
+      const draggedItem = $(values[1]);
+      const todoHeight = draggedItem.find('.todo').height();
+      const draggedItemWidth = draggedItem.width();
+      const actionButton = draggedItem.find('.action');
 
-      draggedItem.find('.action').height(height);
+      actionButton.height(todoHeight).width(draggedItemWidth);
 
       setTimeout(() => {
         const mirror = $('.gu-mirror');
-        const action = mirror.offset().left > 0 ? 'done' : 'remove';
-        draggedItem.addClass('action-' + action);
-      }, 0);
+        mirror.width(draggedItemWidth);
+
+        const markedAction = mirror.offset().left > 0 ? 'done' : 'remove';
+        draggedItem.addClass('action-' + markedAction);
+      }, 300);
     });
 
-    this.dragulaService.cancel.subscribe(value => {
-      $(value[1]).removeClass('action-done action-remove').find('.action').removeAttr('style');
+    this.dragulaService.cancel.subscribe(values => {
+      $(values[1]).removeClass('action-done action-remove').find('.action').removeAttr('style');
     });
 
-    this.dragulaService.dragend.subscribe(value => {
-      console.log(value);
-    })
+    this.dragulaService.remove.subscribe(values => {
+      const draggedItem = $(values[1]);
+      const actionFunction = draggedItem.hasClass('action-done') ? this.todoService.complete : this.todoService.remove;
+      const key = draggedItem.data('key');
+
+      actionFunction(key);
+    });
   }
 
   ngOnDestroy(): void {

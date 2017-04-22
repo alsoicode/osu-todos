@@ -6,7 +6,7 @@ import { TodoService } from '../todos.service';
 @Component({
   selector: '[todo-component]',
   template: `
-    <button class="btn btn-link btn-lg action action-done" (click)="onComplete(todo)">
+    <button class="btn btn-link btn-lg action action-done" (click)="onComplete(todo.key)">
       <i class="fa fa-check-circle-o"></i>
       <span class="sr-only">Mark as Done</span>
     </button>
@@ -28,8 +28,8 @@ export class TodoComponent {
     private todoService: TodoService,
   ) {}
 
-  onComplete(todo: Todo): void {
-    this.todoService.complete(todo);
+  onComplete(key: string): void {
+    this.todoService.complete(key);
   }
 
   onRemove(key: string): void {

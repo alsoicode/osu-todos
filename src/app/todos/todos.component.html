@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
       <ol class="todos" [dragula]="'todos-bag'" [dragulaModel]="todos">
-        <li todo-component *ngFor="let todo of todos" [todo]="todo"></li>
+        <li todo-component *ngFor="let todo of todos" [todo]="todo" attr.data-key="{{ todo.key }}"></li>
       </ol>
     </div>
   </div>
