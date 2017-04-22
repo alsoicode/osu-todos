@@ -31,6 +31,7 @@ export class TodoService {
 
     this.complete = this.complete.bind(this);
     this.findByKey = this.findByKey.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
   getIncomplete(): Observable<Todo[]> {

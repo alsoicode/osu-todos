@@ -38,10 +38,13 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.dragulaService.drag.subscribe(values => {
       const draggedItem = $(values[1]);
       const todoHeight = draggedItem.find('.todo').height();
-      const draggedItemWidth = draggedItem.width();
+      const draggedItemWidth = draggedItem.innerWidth();
       const actionButton = draggedItem.find('.action');
+      const buttonPadding = parseInt(actionButton.css('padding-left'), 10) * 2;
+      const buttonBorder = parseInt(actionButton.css('border-width'), 10) * 2;
+      const buttonExtraWidth = buttonPadding + buttonBorder;
 
-      actionButton.height(todoHeight).width(draggedItemWidth);
+      actionButton.height(todoHeight).width(draggedItemWidth - buttonExtraWidth);
 
       setTimeout(() => {
         const mirror = $('.gu-mirror');
@@ -49,7 +52,7 @@ export class TodosComponent implements OnInit, OnDestroy {
 
         const markedAction = mirror.offset().left > 0 ? 'done' : 'remove';
         draggedItem.addClass('action-' + markedAction);
-      }, 300);
+      }, 200);
     });
 
     this.dragulaService.cancel.subscribe(values => {

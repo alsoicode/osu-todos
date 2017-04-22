@@ -15,6 +15,7 @@
 
 .gu-mirror {
   background-color: #eee;
+  border-bottom: solid 1px #ccc;
   list-style-type: none;
   opacity: 1;
 
@@ -91,11 +92,6 @@ body {
     }
   }
 
-  &.touch-enabled {
-
-  }
-
-
   .todos {
     padding-left: 0;
 
@@ -105,10 +101,6 @@ body {
       list-style-type: none;
       overflow-x: hidden;
       padding: 0.5rem 0;
-
-      &:last-child {
-        border-bottom: 0 none;
-      }
 
       &.gu-transit {
         opacity: 1;
