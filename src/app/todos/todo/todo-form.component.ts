@@ -1,7 +1,8 @@
 import { Component, ElementRef, Input, Renderer, ViewChild, AfterContentInit, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { TodoService } from './../todos.service';
+import { TodoService } from '../todos.service';
+import { UserAgentService } from '../../lib/services/user-agent.service';
 
 @Component({
   selector: 'todo-form',
@@ -25,6 +26,7 @@ export class TodoFormComponent implements AfterContentInit, OnInit {
     private formBuilder: FormBuilder,
     private renderer: Renderer,
     private todoService: TodoService,
+    private userAgentService: UserAgentService,
   ) {}
 
   ngOnInit(): void {
@@ -49,7 +51,10 @@ export class TodoFormComponent implements AfterContentInit, OnInit {
         .add(text)
         .then(() => {
           this.todoForm.reset();
-          this.focusTextInput();
+
+          if (!this.userAgentService.isMobile) {
+            this.focusTextInput();
+          }
         })
         .catch(() => console.log('error'));
     }
