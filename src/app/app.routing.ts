@@ -3,6 +3,7 @@ import { CanActivate, Routes } from '@angular/router';
 import { AnonymousRequired, AuthRequired } from './auth';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './logout.component';
+import { NoContentComponent } from './no-content.component';
 
 export const appRoutes: Routes = [
   {
@@ -18,5 +19,9 @@ export const appRoutes: Routes = [
     path: 'todos',
     loadChildren: './todos/todos.module#TodosModule',
     canActivate: [AuthRequired]
-  }
+  },
+  {
+    path: '**',
+    component: NoContentComponent
+  },
 ];
