@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs/Subscription';
@@ -21,10 +22,13 @@ export class TodosComponent implements OnInit, OnDestroy {
 
   constructor (
     private dragulaService: DragulaService,
+    private titleService: Title,
     private todoService: TodoService,
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('My Things to Do');
+
     this.todosSubscription = this.todoService.getIncomplete().subscribe(todos => {
       this.todos = todos;
       this.loading = false;

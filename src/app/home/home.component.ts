@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   styleUrls: [
@@ -16,4 +17,14 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class HomeComponent {}
+export class HomeComponent implements OnInit {
+
+  constructor (
+    private titleService: Title,
+  ) {}
+
+  ngOnInit(): void {
+    this.titleService.setTitle('Welcome to Things to Do');
+  }
+
+}
