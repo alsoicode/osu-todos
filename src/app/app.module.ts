@@ -9,6 +9,7 @@ import { AnonymousRequired, AuthRequired, AuthService, LoginButtonComponent } fr
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home';
 import { LogoutComponent } from './logout.component';
+import { NoContentComponent } from './no-content.component';
 import { TodoService } from './todos/todos.service';
 import { UserAgentService } from './lib/services/user-agent.service';
 
@@ -18,6 +19,7 @@ import { UserAgentService } from './lib/services/user-agent.service';
     HomeComponent,
     LogoutComponent,
     LoginButtonComponent,
+    NoContentComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(
