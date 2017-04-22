@@ -13,92 +13,187 @@
   font-weight: 300;
 }
 
-.todos {
-  padding-left: 0;
+.gu-mirror {
+  background-color: #eee;
+  border-bottom: solid 1px #ccc;
+  list-style-type: none;
+  opacity: 1;
 
-  li {
-    border-bottom: solid 1px #ccc;
-    font-size: 1.75rem;
-    list-style-type: none;
-    overflow-x: hidden;
-    padding: 0.5rem 0;
+  .btn[class*='action-'] {
+    display: none;
+  }
 
-    &:last-child {
-      border-bottom: 0 none;
+  span {
+    &.btn-link {
+      border-radius: 0;
+      color: #888;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      padding: 18px;
+      text-align: left;
+      text-decoration: none;
+      width: 80%;
+      white-space: inherit;
     }
+  }
+}
 
-    &:hover {
-      cursor: pointer;
+body {
+  &.no-touch {
+    .todos {
+      li {
+        &.mark-for-completion {
+          .btn-lg.action-done, .btn-link {
+            color: #468C00;
+          }
 
-      .btn-lg {
+          .btn-lg.action-remove {
+            color: #ccc;
+            opacity: 0;
+          }
+
+        }
+
+        &.mark-for-removal {
+          .btn-lg.action-remove, .btn-link {
+            color: #B20000;
+          }
+
+          .btn-lg.action-done {
+            color: #ccc;
+            opacity: 0;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .btn-lg {
+            &.action-done {
+              margin-left: 0;
+            }
+
+            &.action-remove {
+              margin-right: 0;
+            }
+          }
+        }
+
+        .btn-lg {
+          &.action-done {
+            transition: margin-left 200ms ease-in, opacity 500ms linear;
+          }
+
+          &.action-remove {
+            transition: margin-right 200ms ease-in, opacity 500ms linear;
+          }
+        }
+      }
+    }
+  }
+
+  .todos {
+    padding-left: 0;
+
+    li {
+      border-bottom: solid 1px #ccc;
+      font-size: 1.75rem;
+      list-style-type: none;
+      overflow-x: hidden;
+      padding: 0.5rem 0;
+
+      &.gu-transit {
+        opacity: 1;
+
+        &.action-done, &.action-remove {
+          .btn-lg {
+            &.action-done, &.action-remove {
+              border-radius: 5px;
+              display: block;
+              padding-top: 7px;
+              transition: all 0s ease 0s;
+              width: 80%;
+              z-index: 110;
+            }
+
+            &.todo {
+              display: none;
+            }
+          }
+        }
+
         &.action-done {
-          margin-left: 0;
+          .btn-lg {
+            &.action-done {
+              background-color: #468C00;
+              text-align: left;
+            }
+
+            &.action-remove {
+              display: none;
+            }
+          }
         }
 
         &.action-remove {
-          margin-right: 0;
+          .btn-lg {
+            &.action-remove {
+              background-color: #B20000;
+              text-align: right;
+            }
+
+            &.action-done {
+              display: none;
+            }
+          }
+        }
+
+        .btn-lg.action {
+          color: #fff;
+          display: none;
+          float: none;
+          margin: 0;
+          z-index: 100;
+        }
+
+      }
+
+      .btn-lg {
+        color: #ccc;
+        display: block;
+        float: left;
+        font-size: 1.5rem;
+
+        &:last-child {
+          float: right;
+        }
+
+        &.action-done {
+          margin-left: -60px;
+        }
+
+        &.action-remove {
+          margin-right: -60px;
+        }
+
+        &.action {
+          height: 0;
         }
       }
-    }
 
-    &.mark-for-completion {
-      .btn-lg.action-done, .btn-link {
-        color: #468C00;
-      }
+      span {
+        &.btn-link {
+          color: #888;
+          line-height: 1.5rem;
+          padding-left: 0;
+          padding-right: 0;
+          text-align: left;
+          width: 80%;
+          white-space: inherit;
 
-      .btn-lg.action-remove {
-        color: #ccc;
-        opacity: 0;
-      }
-
-    }
-
-    &.mark-for-removal {
-      .btn-lg.action-remove, .btn-link {
-        color: #B20000;
-      }
-
-      .btn-lg.action-done {
-        color: #ccc;
-        opacity: 0;
-      }
-    }
-
-    .btn-lg {
-      color: #ccc;
-      display: block;
-      float: left;
-      font-size: 1.5rem;
-
-      &:last-child {
-        float: right;
-      }
-
-      &.action-done {
-        margin-left: -60px;
-
-        transition: margin-left 200ms ease-in, opacity 500ms linear;
-      }
-
-      &.action-remove {
-        margin-right: -60px;
-
-        transition: margin-right 200ms ease-in, opacity 500ms linear;
-      }
-    }
-
-    span {
-      &.btn-link {
-        color: #888;
-        line-height: 1.5rem;
-        padding-left: 0;
-        padding-right: 0;
-        text-align: left;
-        width: 80%;
-        white-space: inherit;
-
-        &:hover {
-          text-decoration: none;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
     }

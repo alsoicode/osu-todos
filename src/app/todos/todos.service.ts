@@ -1,3 +1,4 @@
+import { ITodo } from './todo/models/ITodo';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -27,6 +28,10 @@ export class TodoService {
       this.incompleteTodos = this.angularFire.database.list(`${rootPath}/incomplete`);
       this.completeTodos = this.angularFire.database.list(`${rootPath}/complete`);
     }
+
+    this.complete = this.complete.bind(this);
+    this.findByKey = this.findByKey.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
   getIncomplete(): Observable<Todo[]> {
@@ -60,28 +65,38 @@ export class TodoService {
     return this.observable;
   }
 
+  findByKey = (key: string): Todo => {
+    return this.todos.filter(todo => todo.key === key)[0] || null;
+  }
+
   add(text: string): Promise<any> {
     return Promise.resolve(
       this.incompleteTodos
-        .push({
+        .push(<ITodo>{
           createdOn: new Date().getTime(),
           text: text
         })
-        .then(todo => todo)
     );
   }
 
-  complete(todo: Todo): Promise<any> {
-    return Promise.resolve(
-      this.completeTodos.push({
-        createdOn: todo.createdOn,
-        completedOn: new Date().getTime(),
-        text: todo.text
-      })
-      .then(() => {
-        this.remove(todo.key);
-      })
-    );
+  complete(key: string): Promise<any> {
+    const todo = this.findByKey(key);
+
+    if (todo) {
+      return Promise.resolve(
+        this.completeTodos.push({
+          createdOn: todo.createdOn,
+          completedOn: new Date().getTime(),
+          text: todo.text
+        })
+        .then(() => {
+          this.remove(key);
+        })
+      );
+    }
+    else {
+      return Promise.reject('todo was undefined');
+    }
   }
 
   remove(key: string): Promise<any> {

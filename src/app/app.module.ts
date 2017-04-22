@@ -19,14 +19,14 @@ import { TodoService } from './todos/todos.service';
     LoginButtonComponent,
   ],
   imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(
       environment.firebase, {
         provider: AuthProviders.Github,
         method: AuthMethods.Redirect
       }
-    )
+    ),
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [
     AnonymousRequired,
