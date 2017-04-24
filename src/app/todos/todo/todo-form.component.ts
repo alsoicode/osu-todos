@@ -52,11 +52,11 @@ export class TodoFormComponent implements AfterContentInit, OnInit {
         .then(() => {
           this.todoForm.reset();
 
+          // if the user agent isn't mobile, re-focus the input for convenience
           if (!this.userAgentService.isMobile) {
             this.focusTextInput();
           }
-        })
-        .catch(() => console.log('error'));
+        });
     }
   }
 

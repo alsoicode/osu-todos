@@ -1,10 +1,13 @@
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
 
 import { AuthService } from './auth.service';
 
+/**
+ * A class that ensures that a route can only be accessed by an non-authenticated visitor.
+ */
 @Injectable()
 export class AnonymousRequired implements CanActivate {
 
@@ -16,13 +19,15 @@ export class AnonymousRequired implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.authService.state.map(authState => {
       if (authState) {
+        // This user is authenticated, take them to the /todos route
         this.router.navigate(['/todos']);
         return false;
       }
       else {
+        // Allow the user to access the route requested
         return true;
       }
-    }).first();
+    }).first(); // return the `first` value provided by `state` as `authState`
   }
 
 }

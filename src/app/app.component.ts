@@ -16,6 +16,15 @@ export class AppComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
   loggedIn = false;
 
+  /**
+   * Creates an instance of AppComponent.
+   * Sets up an event listener that detects touch events to add a class
+   * to the body tag, and  automatically unsubscribe.
+   *
+   * @param {AuthService} authService
+   *
+   * @memberOf AppComponent
+   */
   constructor (
     private authService: AuthService,
   ) {
