@@ -1,3 +1,7 @@
 @mixin simple-text-shadow($blur, $opacity) {
   text-shadow: 0px 0px $blur rgba(0, 0, 0, $opacity);
 }
+
+@mixin simple-box-shadow($blur, $opacity) {
+  box-shadow: 0px 0px $blur 0px rgba(0, 0, 0, $opacity);
+}
