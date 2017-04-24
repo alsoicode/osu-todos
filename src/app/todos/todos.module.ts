@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { DragulaModule } from 'ng2-dragula';
-import { MarkDoneDirective } from './todo/directives/mark-done.directive';
+import { MarkCompleteDirective } from './todo/directives/mark-complete.directive';
 import { MarkRemovalDirective } from './todo/directives/mark-remove.directive';
 import { TodoComponent } from './todo/todo.component';
 import { TodoFormComponent } from './todo/todo-form.component';
@@ -20,7 +20,7 @@ import { todosRouting } from './todos.routing';
     RouterModule.forChild(todosRouting),
   ],
   declarations: [
-    MarkDoneDirective,
+    MarkCompleteDirective,
     MarkRemovalDirective,
     TodoComponent,
     TodoFormComponent,
