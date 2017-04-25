@@ -1,7 +1,16 @@
 
 # Todos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+![home-page](https://res.cloudinary.com/alsoicode/image/upload/v1493141233/github/osu-todos/home-mobile.fw.png)
+![todos-list](https://res.cloudinary.com/alsoicode/image/upload/v1493141233/github/osu-todos/my-todos-mobile.fw.png)
+
+A responsive, Firebase-connected Todo list built using Angular that demonstrates some of the basic concepts involved in building a small, but non-trivial application.
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0 and leverages:
+
+ - [Firebase](https://firebase.google.com/)
+ - [Bootstrap](https://getbootstrap.com)
+ - [Font Awesome](http://fontawesome.io/)
 
 ## Requirements
 
@@ -36,5 +45,5 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md) or email me, Brandon Taylor, with questions at: [alsoicode@gmail.com](mailto:alsoicode@gmail.com?Subject=Help with Todos)
 
