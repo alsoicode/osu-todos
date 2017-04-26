@@ -72,7 +72,7 @@ export class TodosComponent implements OnInit, OnDestroy {
         // add a css class corresponding to the action to the dragged item
         const markedAction = mirror.offset().left > 0 ? 'done' : 'remove';
         draggedItem.addClass('action-' + markedAction);
-      }, 200);
+      }, 100);
     });
 
     // Remove css classes that were added to the dragged item if the drag is canceled

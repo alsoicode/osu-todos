@@ -11,9 +11,11 @@ import { Injectable } from '@angular/core';
 export class UserAgentService {
 
   public isMobile = false;
+  public isIOS = false;
 
   constructor() {
     this.isMobile = navigator.userAgent.match(/(iPad|iPhone|iPod|Android|Mobile)/g) ? true : false;
+    this.isIOS = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
   }
 
 }
