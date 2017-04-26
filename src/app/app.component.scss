@@ -59,6 +59,10 @@ header {
       font-size: 2rem;
       letter-spacing: -0.0625rem;
 
+      &:focus {
+        color: #fff;
+      }
+
       &:hover {
         color: $button-color;
       }
