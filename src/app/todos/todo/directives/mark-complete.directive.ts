@@ -1,9 +1,16 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
+/**
+ * Class that binds mouse events to a DOM element to mark the parent element
+ * for completion
+ *
+ * @export
+ * @class MarkDonelDirective
+ */
 @Directive({
   selector: '.action-done'
 })
-export class MarkDoneDirective {
+export class MarkCompleteDirective {
 
   constructor(
     private elementRef: ElementRef,

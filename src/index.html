@@ -11,12 +11,41 @@
     <script src="https://use.fontawesome.com/5f4d049d13.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        width: 100%;
+      }
+
+      .fb-centered {
+        align-items: center;
+        bottom: 0;
+        display: flex;
+        height: 100%;
+        flex-direction: row;
+        justify-content: center;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+      }
+
+      .fb-item {
+        font-family: 'Open Sans';
+        font-weight: 300;
+        margin: auto;
+        max-width: 50%;
+      }
+    </style>
   </head>
   <body class="no-touch">
     <app-root>
-      <div class="center-both">
-        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-        <span class="sr-only">Loading...</span>
+      <div class="fb-centered">
+        <div class="fb-item">
+          <h1><i class="fa fa-spinner fa-pulse fa-fw"></i> Initializing... Please wait</h1>
+          <span class="sr-only">Initializing... Please wait</span>
+        </div>
       </div>
     </app-root>
   </body>

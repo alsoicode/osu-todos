@@ -1,4 +1,5 @@
-@import '../../assets/scss/variables';
+@import '../../assets/scss/breakpoints';
+@import '../../assets/scss/colors';
 
 .form-row {
   margin-bottom: 2rem;
@@ -14,8 +15,8 @@
 }
 
 .gu-mirror {
-  background-color: #eee;
-  border-bottom: solid 1px #ccc;
+  background-color: $background-color;
+  border-bottom: solid 1px $todo-action-color;
   list-style-type: none;
   opacity: 1;
 
@@ -26,7 +27,7 @@
   span {
     &.btn-link {
       border-radius: 0;
-      color: #888;
+      color: $todo-link-color;
       font-size: 1.5rem;
       line-height: 1.5rem;
       padding: 18px;
@@ -44,11 +45,11 @@ body {
       li {
         &.mark-for-completion {
           .btn-lg.action-done, .btn-link {
-            color: #468C00;
+            color: $action-done-color;
           }
 
           .btn-lg.action-remove {
-            color: #ccc;
+            color: $todo-action-color;
             opacity: 0;
           }
 
@@ -56,11 +57,11 @@ body {
 
         &.mark-for-removal {
           .btn-lg.action-remove, .btn-link {
-            color: #B20000;
+            color: $action-remove-color;
           }
 
           .btn-lg.action-done {
-            color: #ccc;
+            color: $todo-action-color;
             opacity: 0;
           }
         }
@@ -96,7 +97,7 @@ body {
     padding-left: 0;
 
     li {
-      border-bottom: solid 1px #ccc;
+      border-bottom: solid 1px $todo-action-color;
       font-size: 1.75rem;
       list-style-type: none;
       overflow-x: hidden;
@@ -125,7 +126,7 @@ body {
         &.action-done {
           .btn-lg {
             &.action-done {
-              background-color: #468C00;
+              background-color: $action-done-color;
               text-align: left;
             }
 
@@ -138,7 +139,7 @@ body {
         &.action-remove {
           .btn-lg {
             &.action-remove {
-              background-color: #B20000;
+              background-color: $action-remove-color;
               text-align: right;
             }
 
@@ -159,7 +160,7 @@ body {
       }
 
       .btn-lg {
-        color: #ccc;
+        color: $todo-action-color;
         display: block;
         float: left;
         font-size: 1.5rem;
@@ -183,7 +184,7 @@ body {
 
       span {
         &.btn-link {
-          color: #888;
+          color: $todo-link-color;
           line-height: 1.5rem;
           padding-left: 0;
           padding-right: 0;

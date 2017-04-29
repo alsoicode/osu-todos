@@ -1,5 +1,12 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
+/**
+ * Class that binds mouse events to a DOM element to mark the parent element
+ * for removal
+ *
+ * @export
+ * @class MarkRemovalDirective
+ */
 @Directive({
   selector: '.action-remove'
 })

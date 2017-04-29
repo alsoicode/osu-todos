@@ -1,9 +1,12 @@
 @import '../assets/scss/mixins';
-@import '../assets/scss/variables';
+@import '../assets/scss/breakpoints';
+@import '../assets/scss/colors';
 
 
-/* Bootstrap Overrides
+/* Bootstrap Overrides / Variables
 -------------------------------------------------- */
+$gutter: 15px;
+
 .btn {
   &.btn-block {
     display: inline-block;
@@ -12,8 +15,11 @@
 }
 
 
-/* Sticky footer styles
+/* Sticky footer styles / variables
 -------------------------------------------------- */
+$footer-height: 75px;
+$navbar-height: 57px;
+
 html {
   font-size: 16px;
   min-height: 100%;
@@ -28,7 +34,7 @@ body {
   margin-bottom: $footer-height;
 
   @media screen and (max-width: $largest-mobile-breakpoint) {
-    margin-bottom: $footer-height + 15px;
+    margin-bottom: $footer-height + $gutter;
   }
 
   a {
@@ -38,9 +44,9 @@ body {
 
 header {
   .navbar {
-    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.45);
-    height: 57px;
-    min-height: 57px;
+    @include simple-box-shadow(11px, 0.45);
+    height: $navbar-height;
+    min-height: $navbar-height;
   }
 
   .navbar-default {
@@ -52,6 +58,10 @@ header {
       font-weight: 300;
       font-size: 2rem;
       letter-spacing: -0.0625rem;
+
+      &:focus {
+        color: #fff;
+      }
 
       &:hover {
         color: $button-color;
@@ -73,7 +83,7 @@ header {
       > li {
         .dropdown-menu {
           border: 0 none;
-          padding: 15px;
+          padding: $gutter;
           text-align: right;
         }
 
@@ -97,12 +107,12 @@ header {
         max-width: 40%;
 
         .navbar-nav {
-          height: 57px;
-          margin: 0 -15px 0;
+          height: $navbar-height;
+          margin: 0 -15px;
         }
 
         .dropdown {
-          height: 57px;
+          height: $navbar-height;
 
           &.open {
             a, a:hover {
@@ -112,7 +122,7 @@ header {
             .dropdown-menu {
               a {
                 background-color: #fff;
-                box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.5);
+                @include simple-box-shadow(11px, 0.5);
                 height: 50px;
                 margin-right: -16px;
                 padding-bottom: 0;
@@ -125,8 +135,8 @@ header {
           a {
             display: block;
             float: right;
-            height: 57px;
-            padding-top: 15px;
+            height: $navbar-height;
+            padding-top: $gutter;
             width: 75px;
 
             &:hover {
@@ -137,12 +147,12 @@ header {
       }
     }
 
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: $medium-mobile-breakpoint) {
       #navbar {
         .dropdown {
           &.open {
             .dropdown-menu {
-              padding-right: 30px;
+              padding-right: $gutter * 2;
             }
           }
         }
@@ -153,7 +163,7 @@ header {
 
 main {
   &.container {
-    padding-top: 57px;
+    padding-top: $navbar-height;
   }
 }
 
@@ -162,7 +172,7 @@ footer {
     bottom: 0;
     box-shadow:inset 0 11px 11px -11px rgba(0, 0, 0, 0.25);
     color: #fff;
-    padding-top: 15px;
+    padding-top: $gutter;
     position: absolute;
     width: 100%;
 
@@ -171,7 +181,7 @@ footer {
     background-color: $footer-color;
 
     @media screen and (max-width: $largest-mobile-breakpoint) {
-      height: $footer-height + 15px;
+      height: $footer-height + $gutter;
     }
 
     a {

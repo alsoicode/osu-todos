@@ -36,11 +36,11 @@ export class TodoFormComponent implements AfterContentInit, OnInit {
   }
 
   ngAfterContentInit(): void {
-    this.focusTextInput();
+    this.invokeElementMethod('focus');
   }
 
-  focusTextInput(): void {
-    this.renderer.invokeElementMethod(this.textInput.nativeElement, 'focus');
+  invokeElementMethod(method: string): void {
+    this.renderer.invokeElementMethod(this.textInput.nativeElement, method);
   }
 
   onSubmit(): void {
@@ -52,11 +52,11 @@ export class TodoFormComponent implements AfterContentInit, OnInit {
         .then(() => {
           this.todoForm.reset();
 
-          if (!this.userAgentService.isMobile) {
-            this.focusTextInput();
-          }
-        })
-        .catch(() => console.log('error'));
+          // if the user agent isn't mobile, re-focus the input for convenience,
+          // otherwise, blur to hide the on-screen keyboard
+          const method = this.userAgentService.isMobile ? 'blur' : 'focus';
+          this.invokeElementMethod(method);
+        });
     }
   }
 

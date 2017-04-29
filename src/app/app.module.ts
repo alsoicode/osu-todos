@@ -14,6 +14,13 @@ import { Title } from '@angular/platform-browser';
 import { TodoService } from './todos/todos.service';
 import { UserAgentService } from './lib/services/user-agent.service';
 
+/**
+ * Provides the core application namespace defining which
+ * components, modules and services the application uses.
+ *
+ * @export
+ * @class AppModule
+ */
 @NgModule({
   declarations: [
     AppComponent,
