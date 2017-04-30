@@ -29,6 +29,7 @@ html {
 body {
   background-color: $background-color;
   font-family: 'Open Sans';
+  height: auto;
 
   /* Margin bottom by footer height */
   margin-bottom: $footer-height;
@@ -172,6 +173,7 @@ footer {
     bottom: 0;
     box-shadow:inset 0 11px 11px -11px rgba(0, 0, 0, 0.25);
     color: #fff;
+    margin-top: -75px;
     padding-top: $gutter;
     position: absolute;
     width: 100%;
