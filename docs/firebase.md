@@ -24,4 +24,4 @@ We need our application to be able to connect to Firebase, and to do that, we ne
 
 ## That's it!
 
-Your application is ready to connect to Firebase and Authenticate via Github. [Continue reading](../README.md) to get the project's code dependencies installed.
+Your application is ready to connect to Firebase and Authenticate via Github. [Continue reading](../README.md#getting-started-writing-code) to get the project's code dependencies installed.
