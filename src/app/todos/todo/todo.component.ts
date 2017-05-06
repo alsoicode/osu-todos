@@ -11,7 +11,7 @@ import { TodoService } from '../todos.service';
       <span class="sr-only">Mark as Done</span>
     </button>
     <span class="btn btn-link btn-lg todo">
-      {{ todo.text }}
+      <span *ngIf="todo.displayDateWarning" title="Quit procrastinating!"><i class="fa fa-warning"></i> </span>{{ todo.text }}
     </span>
     <button class="btn btn-link btn-lg action action-remove" (click)="onRemove(todo.key)">
       <i class="fa fa-times-circle-o"></i>
