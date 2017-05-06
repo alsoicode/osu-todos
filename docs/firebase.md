@@ -4,11 +4,15 @@ First, you need an account, so create one, then log in.
 
 ## Add A Project
 
+![firebase-new-project](http://res.cloudinary.com/alsoicode/image/upload/v1494076357/github/osu-todos/firebase-new-project.jpg)
+
 - Click on the "Go To Console" link in the upper-right corner, then click the "Add Project Button" and follow the on-screen instructions.
 
 ## Authentication Provider
 
 Next, click the "Authentication" link in the sidebar navigation, click the "Sign-In Method" tab and finally, click on "Github".
+
+![firebae-oauth-provider](http://res.cloudinary.com/alsoicode/image/upload/v1494076357/github/osu-todos/firebase-enable-github.jpg)
 
 - Toggle the "Enable" switch to turn on authentication for Github. Enter your Client ID and Client Secret values from Github.
 - Copy the Authorization Callback URL at the bottom of the form
@@ -17,6 +21,8 @@ Next, click the "Authentication" link in the sidebar navigation, click the "Sign
 ## Web Application Settings
 
 We need our application to be able to connect to Firebase, and to do that, we need them to provide us some settings.
+
+![firebase-config-values](http://res.cloudinary.com/alsoicode/image/upload/v1494076357/github/osu-todos/firebase-config-values.jpg)
 
 - Click on the "Web Setup" link in the upper-right-hand corner of the Authentication tab. We won't need the script tags, just the "config" values.
 
