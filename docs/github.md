@@ -6,10 +6,12 @@ First, you'll need to create a Github account, then log in.
 
 Go to your account Settings using the drop-down menu in the upper-right-corner, then select "OAuth Applications" from the "Developer Settings" in the sidebar at the bottom-left of your screen.
 
-## New Application
+## Register A New Application
+
+![new-oauth-app](http://res.cloudinary.com/alsoicode/image/upload/v1494076080/github/osu-todos/github-oauth-create-app.jpg)
 
 - Click the "Register a New Application" button at the top-right of the screen.
-- Enter a name for your application
+- Enter a name
 - Enter "http://localhost:4200" for the "Homepage URL" for now. You can always change this later.
 - Enter "http://localhost:4200" for the "Authorization callback URL for now. You'll replace this value with information from Firebase.
 
