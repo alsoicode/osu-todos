@@ -42,6 +42,7 @@ Modern JavaScript-based applications that leverage Node for compiling/transpilin
 If this command is successful it will return the version of Node that is currently installed. Next, you'll need to:
 
 - Install TypeScript globally using npm: `npm i typescript@next -g`
+- Change directories into your project: `cd /path/to/your/project`
 - Install the project's dependencies: `npm install`
 
 Once the project's dependencies are installed, you will see a `node_modules` directory in your project. This directory should NOT be included in source control; it should be unique per developer.
