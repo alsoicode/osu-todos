@@ -8,13 +8,13 @@ A responsive, Firebase-connected Todo list built using Angular that demonstrates
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0 and leverages:
 
- - [Firebase](https://firebase.google.com/)
- - [Bootstrap](https://getbootstrap.com)
- - [Font Awesome](http://fontawesome.io/)
+ - <a href="https://firebase.google.com/" target="_blank">Firebase</a>
+ - <a href="https://getbootstrap.com" target="_blank">Bootstrap</a>
+ - <a href="http://fontawesome.io/">Font Awesome</a>
 
 ## Software You Need Installed...
 
-#### [Node](https://nodejs.org/en/) (version 6 or Higher)
+#### <a href="https://nodejs.org/en/" target="_blank">Node</a> (version 6 or Higher)
 
 Your TypeScript code will be transpiled to JavaScript using Node and WebPack. You need Node 6 or higher installed on your computer and available via the command line.
 
@@ -24,8 +24,8 @@ I would *highly recommend* using [Visual Studio Code](https://code.visualstudio.
 
 ## Services You Need Accounts for...
 
-- [Firebase](https://firebase.google.com) is a BaaS (Backend as a Service) which this application uses for its realtime database and OAuth provider(s).
-- [Github](https://github.com) to use for Authentication (and for your code)
+- <a href="https://firebase.google.com/" target="_blank">Firebase</a> is a BaaS (Backend as a Service) which this application uses for its realtime database and OAuth provider(s).
+- <a href="https://github.com/" target="_blank">Github</a> to use for Authentication (and for your code)
 
 ### Setting Up Firebase and Github
 
@@ -53,7 +53,7 @@ Run `ng serve` for a local devevelopment server using WebPack. Navigate to `http
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`. See the [Angular CLI](https://github.com/angular/angular-cli/wiki) docs for more information.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`. See the <a href="https://github.com/angular/angular-cli/wiki" target="_blank">Angular CLI</a> docs for more information.
 
 ## Building the Code for Deployment
 
@@ -61,9 +61,9 @@ Run `ng build` (on your command line) to build the project. The build artifacts 
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via <a href="https://karma-runner.github.io" target="_blank">Karma</a>.
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md) or email me, Brandon Taylor, with questions at: [alsoicode@gmail.com](mailto:alsoicode@gmail.com?Subject=Help-with-OSU-Todos)
+To get more help on the Angular CLI use `ng help` or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md" target="_blank">Angular CLI README</a> or email me, Brandon Taylor, with questions at: [alsoicode@gmail.com](mailto:alsoicode@gmail.com?Subject=Help-with-OSU-Todos)
 

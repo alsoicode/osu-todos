@@ -23,4 +23,4 @@ Leave your browser tab open, and make note of the "Client ID" and "Client Secret
 
 ## That's it!
 
-Open a new tab and head over to [Firebase](https://firebase.google.com), then follow the [instructions for set up](./firebase.md)
+Open a new tab and head over to <a href="https://firebase.google.com" target="_blank">Firebase</a>, then follow the [instructions for set up](./firebase.md)
