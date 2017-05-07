@@ -1,7 +1,7 @@
 import { Component, AfterContentInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './auth.service';
 
 @Component({
   template: `
