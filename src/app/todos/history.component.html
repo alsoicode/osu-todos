@@ -1,0 +1,42 @@
+<section *ngIf="!loading; else showLoading">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+      <h1>Your History</h1>
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th colspan="3">{{ totalCompleted }} todos completed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let group of completedTodoGroups;">
+            <th colspan="3">
+              Week of {{ group.week | date:'shortDate' }} <span class="badge pull-right">{{ group.todos.length }}</span>
+              <table class="table table-hover table-bordered history-table">
+                <thead>
+                  <tr>
+                    <th>Created On</th>
+                    <th>Completed On</th>
+                    <th>Work</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let todo of group.todos">
+                    <td>{{ todo.createdOn | date:'shortDate' }}</td>
+                    <td>{{ todo.completedOn | date:'shortDate' }}</td>
+                    <td>{{ todo.text }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #showLoading>
+    <h2 class="text-muted loading-indicator"><i class="fa fa-spinner fa-pulse fa-fw"></i> Loading Completed Todos&hellip;</h2>
+  </ng-template>
+</section>
