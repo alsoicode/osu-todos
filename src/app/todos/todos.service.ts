@@ -1,11 +1,11 @@
-import { ITodo } from './todo/models/ITodo';
-import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { AngularFire } from 'angularfire2';
 import { AuthService } from '../auth/auth.service';
 import { IObjectData } from './todo/models/IObjectData';
+import { ITodo } from './todo/models/ITodo';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Todo } from './todo/models/Todo';
 
 /**
@@ -35,7 +35,9 @@ export class TodoService {
       const rootPath = `/todos/${this.authService.userId}`;
       this.incompleteTodosRootPath = `${rootPath}/incomplete`;
       this.incompleteTodos = this.angularFire.database.list(this.incompleteTodosRootPath);
-      this.completeTodos = this.angularFire.database.list(`${rootPath}/complete`);
+      this.completeTodos = this.angularFire.database.list(`${rootPath}/complete`, {
+        preserveSnapshot: true
+      });
     }
 
     /**
@@ -169,6 +171,10 @@ export class TodoService {
     return Promise.resolve(
       this.incompleteTodos.remove(key)
     );
+  }
+
+  getHistory(): Array<any> {
+    return this.completeTodos.ref
   }
 
 }

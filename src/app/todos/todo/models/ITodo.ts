@@ -7,7 +7,7 @@
  * @interface ITodo
  */
 export interface ITodo {
-  key: string;
+  key?: string;
   createdOn: number;
   text: string;
 }
