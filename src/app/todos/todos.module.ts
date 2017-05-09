@@ -6,7 +6,6 @@ import { HistoryComponent } from './history.component';
 import { MarkCompleteDirective } from './todo/directives/mark-complete.directive';
 import { MarkRemovalDirective } from './todo/directives/mark-remove.directive';
 import { NgModule } from '@angular/core';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { TodoComponent } from './todo/todo.component';
 import { TodoFormComponent } from './todo/todo-form.component';
@@ -18,7 +17,6 @@ import { todosRouting } from './todos.routing';
     CommonModule,
     DragulaModule,
     FormsModule,
-    NgxPaginationModule,
     ReactiveFormsModule,
     RouterModule.forChild(todosRouting),
   ],
