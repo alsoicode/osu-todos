@@ -1,8 +1,8 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { DragulaService } from 'ng2-dragula';
 import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
 import { Todo } from './todo/models/Todo';
 import { TodoService } from './todos.service';
 
@@ -15,6 +15,7 @@ import { TodoService } from './todos.service';
 })
 export class TodosComponent implements OnInit, OnDestroy {
 
+  bagName: 'todos-bag';
   loading = true;
   showLoading: any;
   todos: Todo[] = [];
@@ -34,7 +35,7 @@ export class TodosComponent implements OnInit, OnDestroy {
       this.loading = false;
     });
 
-    this.dragulaService.setOptions('todos-bag', {
+    this.dragulaService.setOptions(this.bagName, {
       axis: 'x',
       removeOnSpill: true
     });
@@ -93,6 +94,7 @@ export class TodosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.dragulaService.destroy(this.bagName);
     this.todosSubscription.unsubscribe();
   }
 

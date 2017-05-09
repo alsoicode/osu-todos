@@ -5,16 +5,7 @@
         <a class="navbar-brand" href="/"><i class="fa fa-list-alt"></i> {{ loggedIn ? 'My Things' : 'Things to Do' }}</a>
       </div>
       <div id="navbar">
-        <ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user-circle-o"></i> <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li>
-                <a routerLink="/logout"><i class="fa fa-sign-out"></i> Logout</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <navbar-menu [loggedIn]="loggedIn"></navbar-menu>
       </div>
     </div>
   </nav>
