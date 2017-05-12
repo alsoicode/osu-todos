@@ -18,6 +18,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   completeTodosSubscription: Subscription;
   completedTodoGroups: ICompletedTodoGroup[] = [];
+  earliestWeek: string;
   loading = true;
   showLoading;
   totalCompleted = 0;
@@ -52,6 +53,8 @@ export class HistoryComponent implements OnInit, OnDestroy {
           todos: groupedValues[key]
         });
       });
+
+      this.earliestWeek = this.completedTodoGroups[this.completedTodoGroups.length - 1].week;
 
       this.loading = false;
     });
