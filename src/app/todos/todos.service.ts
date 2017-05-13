@@ -173,8 +173,16 @@ export class TodoService {
     );
   }
 
-  getHistory(): Array<any> {
-    return this.completeTodos.ref
+  /**
+   * Removes all Todos from the `completeTodos` location
+   *
+   * @returns {Promise<any>}
+   * 
+   * @memberof TodoService
+   */
+  removeAll(): Promise<any> {
+    return Promise.resolve(
+      this.completeTodos.remove()
+    );
   }
-
 }
