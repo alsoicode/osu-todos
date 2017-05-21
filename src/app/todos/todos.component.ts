@@ -15,7 +15,6 @@ import { TodoService } from './todos.service';
 })
 export class TodosComponent implements OnInit, OnDestroy {
 
-  bagName: 'todos-bag';
   loading = true;
   showLoading: any;
   todos: Todo[] = [];
@@ -25,7 +24,12 @@ export class TodosComponent implements OnInit, OnDestroy {
     private dragulaService: DragulaService,
     private titleService: Title,
     private todoService: TodoService,
-  ) {}
+  ) {
+    this.dragulaService.setOptions('todos-bag', {
+      axis: 'x',
+      removeOnSpill: true
+    });
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('My Things to Do');
@@ -33,11 +37,6 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.todosSubscription = this.todoService.getIncomplete().subscribe(todos => {
       this.todos = todos;
       this.loading = false;
-    });
-
-    this.dragulaService.setOptions(this.bagName, {
-      axis: 'x',
-      removeOnSpill: true
     });
 
     this.dragulaService.drag.subscribe(values => {
@@ -94,7 +93,7 @@ export class TodosComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dragulaService.destroy(this.bagName);
+    this.dragulaService.destroy('todos-bag');
     this.todosSubscription.unsubscribe();
   }
 
