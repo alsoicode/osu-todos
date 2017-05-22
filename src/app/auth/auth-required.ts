@@ -17,7 +17,7 @@ export class AuthRequired implements CanActivate {
   ) {}
 
   canActivate(): Observable<boolean> {
-    return this.authService.state.map(authState => {
+    return this.authService.authState.map(authState => {
       if (authState) {
         // if the user is authenticated, allow them to access the route requested
         return true;

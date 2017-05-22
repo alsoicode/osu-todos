@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFire, AuthProviders, FirebaseAuthState } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/last';
+
+import * as firebase from 'firebase/app';
 
 /**
  * A class that abstracts the details of the concrete state provider, FirebaseAuthState
@@ -13,41 +15,36 @@ import 'rxjs/add/operator/take';
 @Injectable()
 export class AuthService {
 
-  state: Observable<FirebaseAuthState>;
+  authState: Observable<firebase.User>;
+  currentUser: firebase.User;
 
   constructor(
-    private angularFire: AngularFire,
+    private angularFireAuth: AngularFireAuth,
   ) {
-    this.state = this.angularFire.auth;
+    this.authState = this.angularFireAuth.authState;
+    angularFireAuth.authState.subscribe((user: firebase.User) => this.currentUser = user);
   }
 
   /**
-   * Synchronously returns the current authentication state and whether or not that object contains
-   * the `uid` property that will only be preent after authentication is successful
+   * Synchronously returns the current authentication state
    *
    * @readonly
    * @type {boolean}
    * @memberOf AuthService
    */
-  get loggedIn(): boolean {
-    let authenticated = false;
-    this.state.take(1).subscribe(state => authenticated = state && state.hasOwnProperty('uid'));
-    return authenticated;
+  get isAuthenticated(): Observable<boolean> {
+    return this.authState.last().map(user => user != null);
   }
 
   /**
-   * Synchronously return the `uid` property of the currently authenticated user, or null
+   * Synchronously return the `uid` property of the currently authenticated user
    *
    * @readonly
    * @type {string}
    * @memberOf AuthService
    */
   get userId(): string {
-    let userId: string = null;
-    if (this.loggedIn) {
-      this.state.take(1).subscribe(state => userId = state.uid);
-    }
-    return userId;
+    return this.currentUser.uid;
   }
 
   /**
@@ -56,11 +53,8 @@ export class AuthService {
    *
    * @memberOf AuthService
    */
-  login(): void {
-    this.angularFire.auth
-      .login({
-        provider: AuthProviders.Github
-      });
+  login(): firebase.Promise<any> {
+    return this.angularFireAuth.auth.signInWithRedirect(new firebase.auth.GithubAuthProvider());
   }
 
   /**
@@ -70,7 +64,8 @@ export class AuthService {
    *
    * @memberOf AuthService
    */
-  logout(): Promise<any> {
-    return this.angularFire.auth.logout();
+  logout(): firebase.Promise<any> {
+    // this.authState = null;
+    return this.angularFireAuth.auth.signOut();
   }
 }

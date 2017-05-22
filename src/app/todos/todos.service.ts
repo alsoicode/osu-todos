@@ -1,6 +1,7 @@
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
 
-import { AngularFire } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthService } from '../auth/auth.service';
 import { IObjectData } from './todo/models/IObjectData';
 import { ITodo } from './todo/models/ITodo';
@@ -22,7 +23,7 @@ export class TodoService {
   incompleteTodosRootPath: string;
 
   constructor (
-    private angularFire: AngularFire,
+    private angularFireDatabase: AngularFireDatabase,
     private authService: AuthService,
   ) {
     /**
@@ -31,11 +32,11 @@ export class TodoService {
      * for easier querying and aggregation. The `userId` in the path prevents users from
      * accessing other user's objects.
      */
-    if (this.authService.state) {
+    if (this.authService.currentUser) {
       const rootPath = `/todos/${this.authService.userId}`;
       this.incompleteTodosRootPath = `${rootPath}/incomplete`;
-      this.incompleteTodos = this.angularFire.database.list(this.incompleteTodosRootPath);
-      this.completeTodos = this.angularFire.database.list(`${rootPath}/complete`, {
+      this.incompleteTodos = this.angularFireDatabase.list(this.incompleteTodosRootPath);
+      this.completeTodos = this.angularFireDatabase.list(`${rootPath}/complete`, {
         preserveSnapshot: true
       });
     }
@@ -46,7 +47,7 @@ export class TodoService {
      * class is instantiated
      */
     this.complete = this.complete.bind(this);
-    // this.findByKey = this.findByKey.bind(this);
+    this.findByKey = this.findByKey.bind(this);
     this.remove = this.remove.bind(this);
   }
 
@@ -105,7 +106,7 @@ export class TodoService {
     const path = `${this.incompleteTodosRootPath}/${key}`;
 
     let todo;
-    this.angularFire.database.object(`${this.incompleteTodosRootPath}/${key}`).take(1).subscribe(objectData => {
+    this.angularFireDatabase.object(`${this.incompleteTodosRootPath}/${key}`).take(1).subscribe(objectData => {
       todo = this.todoFactory(<IObjectData>objectData);
     });
 
