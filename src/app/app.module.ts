@@ -1,4 +1,6 @@
-import { AngularFireModule, AuthMethods, AuthProviders } from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AnonymousRequired, AuthRequired, AuthService, LoginButtonComponent } from './auth';
 
 import { AppComponent } from './app.component';
@@ -32,19 +34,16 @@ import { environment } from '../environments/environment';
     NoContentComponent,
   ],
   imports: [
-    AngularFireModule.initializeApp(
-      environment.firebase, {
-        provider: AuthProviders.Github,
-        method: AuthMethods.Redirect
-      }
-    ),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
+    AuthService,
     AnonymousRequired,
     AuthRequired,
-    AuthService,
     Title,
     TodoService,
     UserAgentService,

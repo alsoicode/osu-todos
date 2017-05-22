@@ -2,10 +2,10 @@
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/"><i class="fa fa-list-alt"></i> {{ loggedIn ? 'My Things' : 'Things to Do' }}</a>
+        <a class="navbar-brand" href="/"><i class="fa fa-list-alt"></i> {{ isAuthenticated ? 'My Things' : 'Things to Do' }}</a>
       </div>
       <div id="navbar">
-        <navbar-menu [loggedIn]="loggedIn"></navbar-menu>
+        <navbar-menu [isAuthenticated]="isAuthenticated"></navbar-menu>
       </div>
     </div>
   </nav>

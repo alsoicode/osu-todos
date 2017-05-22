@@ -2,12 +2,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'navbar-menu',
   template: `
-    <ul class="nav navbar-nav navbar-right" *ngIf="loggedIn">
+    <ul class="nav navbar-nav navbar-right" *ngIf="isAuthenticated">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-user-circle-o"></i> <span class="caret"></span>
@@ -31,12 +32,14 @@ import { Subscription } from 'rxjs/Subscription';
 export class NavbarMenuComponent implements OnInit, OnDestroy {
 
   @Input()
-  loggedIn = false;
+  isAuthenticated: boolean = false;
 
+  authServiceSubscription: Subscription;
   displayTodosLink = true;
   routerSubscription: Subscription;
 
   constructor (
+    private authService: AuthService,
     private router: Router,
   ) {}
 

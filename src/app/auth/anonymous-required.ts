@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/first';
+import 'rxjs/add/observable/of';
 
 import { AuthService } from './auth.service';
 
@@ -17,7 +18,7 @@ export class AnonymousRequired implements CanActivate {
   ) {}
 
   canActivate(): Observable<boolean> {
-    return this.authService.state.map(authState => {
+    return this.authService.authState.map(authState => {
       if (authState) {
         // This user is authenticated, take them to the /todos route
         this.router.navigate(['/todos']);
@@ -28,6 +29,7 @@ export class AnonymousRequired implements CanActivate {
         return true;
       }
     }).first(); // return the `first` value provided by `state` as `authState`
+    
   }
 
 }
