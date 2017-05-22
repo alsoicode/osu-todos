@@ -14,9 +14,6 @@ import { UserAgentService } from './lib/services/user-agent.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
 
-  authSubscription: Subscription;
-  loggedIn = false;
-
   /**
    * Creates an instance of AppComponent.
    * Sets up an event listener that detects touch events to add a class
@@ -26,6 +23,10 @@ export class AppComponent implements OnInit, OnDestroy {
    *
    * @memberOf AppComponent
    */
+
+  authServiceSubscription: Subscription;
+  isAuthenticated = false;
+
   constructor (
     private authService: AuthService,
     private userAgentService: UserAgentService,
@@ -44,13 +45,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authSubscription = this.authService.state.subscribe(authState => {
-      this.loggedIn = authState && this.authService.loggedIn;
+    this.authServiceSubscription = this.authService.authState.subscribe(authState => {
+      this.isAuthenticated = authState != null;
     });
   }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+    this.authServiceSubscription.unsubscribe();
   }
 
 }
