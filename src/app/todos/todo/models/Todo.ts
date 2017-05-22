@@ -14,7 +14,7 @@ export class Todo implements ITodo {
   text: string;
 
   /**
-   * This property demonstrates a very simple example of  why you would
+   * This property demonstrates a very simple example of why you would
    * use your own object populated from Firebase data. You can add whatever
    * getters, setters, etc.
    */
