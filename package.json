@@ -1,6 +1,6 @@
 {
   "name": "todos",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -55,6 +55,6 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
-    "typescript": "^2.3.0"
+    "typescript": "^2.4.0-dev.20170604"
   }
 }
